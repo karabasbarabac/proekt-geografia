@@ -1,0 +1,948 @@
+/* Основные стили */
+:root {
+    --primary: #2c3e50;
+    --secondary: #3498db;
+    --accent: #e74c3c;
+    --light: #1dabcf;
+    --dark: #2c3e50;
+    --shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f9f9f9;
+    font-size: 16px;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Шапка */
+header {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    padding: 2rem 0;
+    text-align: center;
+    box-shadow: var(--shadow);
+}
+
+header h1 {
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
+    margin-bottom: 0.5rem;
+}
+
+header p {
+    font-size: clamp(1rem, 3vw, 1.2rem);
+    opacity: 0.9;
+}
+
+/* Навигация */
+nav {
+    background-color: var(--dark);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--shadow);
+}
+
+.nav-menu {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+}
+
+nav li {
+    margin: 0;
+}
+
+nav a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 1rem 1.5rem;
+    transition: background-color 0.3s;
+    font-size: 1rem;
+}
+
+nav a:hover {
+    background-color: rgba(255,255,255,0.1);
+}
+
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+/* Основное содержимое */
+section {
+    padding: 3rem 0;
+}
+
+section:nth-child(even) {
+    background-color: white;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--primary);
+    font-size: clamp(1.5rem, 4vw, 2rem);
+}
+
+.section-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+.text-content {
+    flex: 1;
+    min-width: 300px;
+}
+
+.text-content h3 {
+    margin: 1.5rem 0 0.5rem;
+    color: var(--primary);
+    font-size: 1.3rem;
+}
+
+.visual-content {
+    flex: 1;
+    min-width: 300px;
+    text-align: center;
+}
+
+/* Карточки статистики */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.stat-card {
+    background: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+}
+
+.stat-value {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: bold;
+    color: var(--secondary);
+    margin: 1rem 0;
+}
+
+/* Инфографика */
+.infographic {
+    background: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+    margin-top: 2rem;
+    width: 100%;
+}
+
+.infographic h4 {
+    margin-bottom: 1.5rem;
+    color: var(--primary);
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.chart-container {
+    margin: 1.5rem 0;
+    position: relative;
+    width: 100%;
+}
+
+.chart-bar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.chart-label {
+    width: 140px;
+    text-align: right;
+    padding-right: 1rem;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+}
+
+.chart-bar-inner {
+    flex: 1;
+    min-width: 150px;
+    position: relative;
+}
+
+.chart-value {
+    height: 30px;
+    background-color: var(--secondary);
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    color: white;
+    border-radius: 0 4px 4px 0;
+    transition: width 1s ease-in-out;
+    width: 0; /* Начальное значение - будет установлено через JS */
+    font-size: 0.9rem;
+    overflow: hidden;
+}
+
+.growth-chart, .age-chart, .region-chart {
+    background-color: var(--secondary); /* По умолчанию, переопределяется через JS */
+}
+
+.chart-caption {
+    font-style: italic;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Списки */
+ul.features {
+    list-style-type: none;
+    margin-top: 1rem;
+}
+
+ul.features li {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+ul.features li:before {
+    content: "•";
+    color: var(--secondary);
+    font-size: 1.5rem;
+    position: absolute;
+    left: 0;
+    top: -3px;
+}
+
+/* Подвал */
+footer {
+    background-color: var(--dark);
+    color: white;
+    padding: 3rem 0;
+    text-align: center;
+}
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 250px;
+}
+
+.footer-section h3 {
+    margin-bottom: 1rem;
+    color: var(--light);
+    font-size: 1.2rem;
+}
+
+.footer-bottom {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    section {
+        padding: 2rem 0;
+    }
+    
+    .menu-toggle {
+        display: block;
+        position: absolute;
+        right: 20px;
+        top: 10px;
+    }
+    
+    .nav-menu {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .nav-menu.active {
+        display: flex;
+    }
+    
+    nav a {
+        padding: 0.8rem 1rem;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .section-content {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1rem;
+    }
+    
+    .stat-card {
+        padding: 1rem;
+    }
+    
+    .infographic {
+        padding: 1rem;
+    }
+    
+    .chart-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 1.5rem;
+    }
+    
+    .chart-label {
+        width: 100%;
+        text-align: left;
+        padding-right: 0;
+        margin-bottom: 0.5rem;
+    }
+    
+    .chart-bar-inner {
+        min-width: 100%;
+        width: 100%;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 10px;
+    }
+    
+    header {
+        padding: 1.5rem 0;
+    }
+    
+    section {
+        padding: 1.5rem 0;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .chart-value {
+        font-size: 0.8rem;
+        padding-left: 5px;
+    }
+    
+    .infographic h4 {
+        font-size: 1.1rem;
+    }
+    
+    footer {
+        padding: 2rem 0;
+    }
+}
+
+/* Улучшения доступности */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Улучшение читаемости для пользователей с дисплеями низкого качества */
+@media (resolution: 1dppx) {
+    body {
+        -webkit-font-smoothing: antialiased;
+    }
+}
+/* Анимации для нового раздела */
+.pyramid-container {
+    margin: 2rem 0;
+    perspective: 1000px;
+}
+
+.pyramid {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease;
+}
+
+.pyramid:hover {
+    transform: translateY(-5px) rotateX(5deg);
+}
+
+.pyramid-title {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    color: var(--primary);
+    font-size: 1.2rem;
+}
+
+.pyramid-content {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    min-height: 400px;
+}
+
+.pyramid-side {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.pyramid-side.male {
+    align-items: flex-end;
+}
+
+.pyramid-side.female {
+    align-items: flex-start;
+}
+
+.pyramid-bar {
+    height: 20px;
+    margin: 2px 0;
+    border-radius: 4px;
+    transition: all 0.8s ease-out;
+    transform-origin: center;
+    opacity: 0;
+    transform: scaleX(0);
+}
+
+.pyramid-side.male .pyramid-bar {
+    background: linear-gradient(90deg, #3498db, #2980b9);
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.pyramid-side.female .pyramid-bar {
+    background: linear-gradient(90deg, #e74c3c, #c0392b);
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.pyramid-axis {
+    width: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+    color: #666;
+    padding: 10px 0;
+}
+
+.age-label {
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2px 0;
+}
+
+.pyramid-legend {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 1rem;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.legend-color {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+}
+
+.legend-color.male {
+    background: #3498db;
+}
+
+.legend-color.female {
+    background: #e74c3c;
+}
+
+/* Стили для карточек разнообразия */
+.diversity-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.diversity-card {
+    background: white;
+    padding: 1.5rem 1rem;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 2px solid transparent;
+}
+
+.diversity-card:hover {
+    transform: translateY(-8px) scale(1.05);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+    border-color: var(--secondary);
+}
+
+.diversity-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.diversity-card:hover .diversity-icon {
+    transform: scale(1.2) rotate(5deg);
+}
+
+.diversity-number {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+}
+
+.diversity-label {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Стили для графиков поселений */
+.settlement-chart {
+    margin: 1.5rem 0;
+}
+
+.settlement-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    gap: 1rem;
+}
+
+.settlement-type {
+    width: 180px;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.settlement-bar {
+    flex: 1;
+    height: 20px;
+    background: #ecf0f1;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.settlement-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--secondary), var(--primary));
+    border-radius: 10px;
+    width: 0;
+    transition: width 1.5s ease-out;
+    position: relative;
+    overflow: hidden;
+}
+
+.settlement-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+.settlement-percent {
+    width: 50px;
+    text-align: right;
+    font-weight: bold;
+    color: var(--primary);
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.5s ease;
+}
+
+/* Стили для миграционных потоков */
+.migration-info {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 12px;
+    color: white;
+}
+
+.migration-info h4 {
+    color: white;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.migration-flow {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.flow-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.8rem;
+    background: rgba(255,255,255,0.1);
+    border-radius: 8px;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.flow-item:hover {
+    transform: translateX(10px);
+    background: rgba(255,255,255,0.2);
+}
+
+.flow-from, .flow-to {
+    flex: 1;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.flow-arrow {
+    margin: 0 1rem;
+    animation: bounce 2s infinite;
+}
+
+.flow-number {
+    font-weight: bold;
+    background: rgba(255,255,255,0.2);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(5px); }
+}
+
+/* Парящая анимация для карточек */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.floating {
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Анимация появления элементов */
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+}
+
+.fade-in-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Анимация для счетчиков */
+.counter {
+    font-variant-numeric: tabular-nums;
+}
+
+/* Адаптивность для нового контента */
+@media (max-width: 768px) {
+    .pyramid-content {
+        flex-direction: column;
+        min-height: auto;
+    }
+    
+    .pyramid-side {
+        flex-direction: row;
+        align-items: center;
+    }
+    
+    .pyramid-side.male,
+    .pyramid-side.female {
+        align-items: center;
+    }
+    
+    .pyramid-bar {
+        width: 100%;
+        height: 15px;
+        margin: 1px 0;
+    }
+    
+    .pyramid-axis {
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-between;
+        order: -1;
+        margin-bottom: 1rem;
+    }
+    
+    .age-label {
+        transform: rotate(-45deg);
+        font-size: 0.7rem;
+        height: auto;
+    }
+    
+    .diversity-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .settlement-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .settlement-type {
+        width: 100%;
+    }
+    
+    .settlement-bar {
+        width: 100%;
+    }
+    
+    .settlement-percent {
+        width: 100%;
+        text-align: left;
+    }
+    
+    .flow-item {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+    
+    .flow-from, .flow-to, .flow-arrow, .flow-number {
+        flex: none;
+    }
+}
+/* Стили для исправленного раздела "Будущее" */
+.future-predictions {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    border-radius: 12px;
+    color: white;
+}
+
+.future-predictions h3 {
+    color: white;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.prediction-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.prediction-card {
+    background: rgba(255,255,255,0.1);
+    padding: 1.5rem 1rem;
+    border-radius: 8px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: all 0.3s ease;
+}
+
+.prediction-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255,255,255,0.15);
+}
+
+.prediction-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.prediction-text {
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.future-chart {
+    position: relative;
+    overflow: hidden;
+}
+
+.future-chart::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--secondary), transparent);
+    animation: scanline 3s ease-in-out infinite;
+}
+
+@keyframes scanline {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.chart-text {
+    font-weight: bold;
+    font-size: 0.8rem;
+    white-space: nowrap;
+}
+
+/* Мини-пирамиды для сравнения */
+.population-pyramid-mini {
+    margin-top: 2rem;
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.pyramid-comparison {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    margin-top: 1rem;
+}
+
+.pyramid-year {
+    text-align: center;
+    flex: 1;
+}
+
+.year-label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: var(--primary);
+}
+
+.mini-pyramid {
+    height: 120px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 1px;
+    margin: 0 auto;
+    max-width: 80px;
+}
+
+.pyramid-bar-mini {
+    width: 3px;
+    background: var(--secondary);
+    transition: height 1s ease-out;
+    border-radius: 1px 1px 0 0;
+}
+
+.pyramid-bar-mini.male {
+    background: #3498db;
+}
+
+.pyramid-bar-mini.female {
+    background: #e74c3c;
+}
+
+/* Анимация появления предсказаний */
+.prediction-card {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
+}
+
+.prediction-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Адаптивность для предсказаний */
+@media (max-width: 768px) {
+    .prediction-cards {
+        grid-template-columns: 1fr;
+    }
+    
+    .pyramid-comparison {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .pyramid-year {
+        width: 100%;
+        max-width: 200px;
+    }
+    
+    .mini-pyramid {
+        height: 100px;
+        max-width: 150px;
+    }
+}
